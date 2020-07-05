@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS organization(
 CREATE TABLE IF NOT EXISTS officeIT(
 	orgId         INTEGER        NOT NULL              --COMMENT Уникальный ID организации
 	, id          INTEGER        NOT NULL  PRIMARY KEY --COMMENT Уникальный ID офиса
-    , name        VARCHAR(50)    NOT NULL              --COMMENT Название офиса',
+    , name        VARCHAR(50)    NOT NULL              --COMMENT Название офиса
 	, address     VARCHAR(50)    NOT NULL              --COMMENT Адрес
     , phone       VARCHAR(30)                          --COMMENT Телефон
 	, isActive    BOOLEAN                              --COMMENT Актуальность
