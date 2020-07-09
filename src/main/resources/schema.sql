@@ -1,25 +1,25 @@
 CREATE TABLE IF NOT EXISTS organization(
-	id           INTEGER        NOT NULL  PRIMARY KEY  --COMMENT Уникальный ID организации
+    id           INTEGER        NOT NULL  PRIMARY KEY  --COMMENT Уникальный ID организации
     , name       VARCHAR(50)    NOT NULL               --COMMENT Название организации
-	, fullName   VARCHAR(50)    NOT NULL               --COMMENT Полное название
-	, address    VARCHAR(50)    NOT NULL               --COMMENT Адрес
-	, phone      VARCHAR(30)    NOT NULL               --COMMENT Телефон
+    , fullName   VARCHAR(50)    NOT NULL               --COMMENT Полное название
+    , address    VARCHAR(50)    NOT NULL               --COMMENT Адрес
+    , phone      VARCHAR(30)    NOT NULL               --COMMENT Телефон
     , inn        VARCHAR(30)    NOT NULL               --COMMENT ИНН
     , kpp        VARCHAR(30)    NOT NULL               --COMMENT КПП
-	, isActive   BOOLEAN                               --COMMENT Актуальность
+    , isActive   BOOLEAN                               --COMMENT Актуальность
 );
 
 CREATE UNIQUE INDEX orname_idx ON organization (name);
 CREATE UNIQUE INDEX oractive_idx ON organization (isActive);
 
 create table if not exists offices(
-	orgId         INTEGER        NOT NULL              --COMMENT Уникальный ID организации
-	, id          INTEGER        NOT NULL  PRIMARY KEY --COMMENT Уникальный ID офиса
+    orgId         INTEGER        NOT NULL              --COMMENT Уникальный ID организации
+    , id          INTEGER        NOT NULL  PRIMARY KEY --COMMENT Уникальный ID офиса
     , name        VARCHAR(50)    NOT NULL              --COMMENT Название офиса
-	, address     VARCHAR(50)    NOT NULL              --COMMENT Адрес
+    , address     VARCHAR(50)    NOT NULL              --COMMENT Адрес
     , phone       VARCHAR(30)                          --COMMENT Телефон
-	, isActive    BOOLEAN                              --COMMENT Актуальность
-	, FOREIGN KEY (orgId) REFERENCES organization (ID)
+    , isActive    BOOLEAN                              --COMMENT Актуальность
+    , FOREIGN KEY (orgId) REFERENCES organization (ID)
 );
 
 CREATE INDEX oforgid_idx ON offices (orgId);
@@ -27,10 +27,10 @@ CREATE INDEX ofactive_idx ON offices (isActive);
 
 
 CREATE TABLE IF NOT EXISTS users(
-	id                  INTEGER        NOT NULL  PRIMARY KEY  --COMMENT Уникальный ID сотрудника
-	, orgId             INTEGER                               --СOMMENT ID  организации
-	, officeId          INTEGER        NOT NULL               --СOMMENT ID офиса
-	, firstName         VARCHAR(50)    NOT NULL               --COMMENT Имя
+     id                 INTEGER        NOT NULL  PRIMARY KEY  --COMMENT Уникальный ID сотрудника
+    , orgId             INTEGER                               --СOMMENT ID  организации
+    , officeId          INTEGER        NOT NULL               --СOMMENT ID офиса
+    , firstName         VARCHAR(50)    NOT NULL               --COMMENT Имя
     , secondName        VARCHAR(50)                           --COMMENT Фамилия
     , middleName        VARCHAR(50)                           --COMMENT Отчество
     , position          VARCHAR(30)    NOT NULL               --COMMENT Должность
@@ -45,23 +45,23 @@ CREATE INDEX usactive_idx ON users (isIdentified);
 
 
 CREATE TABLE IF NOT EXISTS docname(
-	documentID       INTEGER       NOT NULL  PRIMARY KEY  --COMMENT ID документа
-	, documentName   VARCHAR(30)   NOT NULL               --COMMENT Название документа
-	, documentCode   INTEGER       NOT NULL               --COMMENT Код документа
-	, UNIQUE(documentID,documentName, documentCode)
+    documentID       INTEGER       NOT NULL  PRIMARY KEY  --COMMENT ID документа
+    , documentName   VARCHAR(30)   NOT NULL               --COMMENT Название документа
+    , documentCode   INTEGER       NOT NULL               --COMMENT Код документа
+    , UNIQUE(documentID,documentName, documentCode)
 );
 
 
 CREATE TABLE IF NOT EXISTS docdata(
-    usID      INTEGER     NOT NULL PRIMARY KEY   -- COMMENT ID сотрудника
-    , docID       INTEGER       NOT NULL        --COMMENT ID документа
-    , docNumber         VARCHAR(20)               --COMMENT Номер документа
-    , docDate           VARCHAR(20)               --COMMENT Дата выдачи
-    , citizenshipID       INTEGER   NOT NULL    --COMMENT ID страны
-	, UNIQUE(usID)
+    usID               INTEGER       NOT NULL PRIMARY KEY   -- COMMENT ID сотрудника
+    , docID            INTEGER       NOT NULL               --COMMENT ID документа
+    , docNumber        VARCHAR(20)                          --COMMENT Номер документа
+    , docDate          VARCHAR(20)                          --COMMENT Дата выдачи
+    , citizenshipID    INTEGER       NOT NULL               --COMMENT ID страны
+    , UNIQUE(usID)
     , FOREIGN KEY (usID) REFERENCES users (id)
-	, FOREIGN KEY (docID) REFERENCES docname (documentID)
-	, FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID)
+    , FOREIGN KEY (docID) REFERENCES docname (documentID)
+    , FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID)
 );
 
 
@@ -70,6 +70,5 @@ CREATE TABLE IF NOT EXISTS citizenship(
 	, citizenshipName   VARCHAR(30)  NOT NULL                --COMMENT Гражданство
 	, citizenshipCode   INTEGER      NOT NULL                --COMMENT Код страны
 );
-select * from citizenship
-drop table citizenship
+
 
