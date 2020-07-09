@@ -53,12 +53,21 @@ CREATE TABLE IF NOT EXISTS docname(
 
 
 CREATE TABLE IF NOT EXISTS docdata(
+<<<<<<< HEAD
     usID               INTEGER       NOT NULL PRIMARY KEY   -- COMMENT ID сотрудника
     , docID            INTEGER       NOT NULL               --COMMENT ID документа
     , docNumber        VARCHAR(20)                          --COMMENT Номер документа
     , docDate          VARCHAR(20)                          --COMMENT Дата выдачи
     , citizenshipID    INTEGER       NOT NULL               --COMMENT ID страны
     , UNIQUE(usID)
+=======
+    usID             INTEGER      NOT NULL PRIMARY KEY  -- COMMENT ID сотрудника
+    , docID          INTEGER      NOT NULL              --COMMENT ID документа
+    , docNumber      VARCHAR(20)                        --COMMENT Номер документа
+    , docDate        VARCHAR(20)                        --COMMENT Дата выдачи
+    , citizenshipID  INTEGER      NOT NULL              --COMMENT ID страны
+	, UNIQUE(usID)
+>>>>>>> Собранные таблицы;индексы;внешн.ключи
     , FOREIGN KEY (usID) REFERENCES users (id)
     , FOREIGN KEY (docID) REFERENCES docname (documentID)
     , FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID)
@@ -70,5 +79,8 @@ CREATE TABLE IF NOT EXISTS citizenship(
 	, citizenshipName   VARCHAR(30)  NOT NULL                --COMMENT Гражданство
 	, citizenshipCode   INTEGER      NOT NULL                --COMMENT Код страны
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> Собранные таблицы;индексы;внешн.ключи
 
