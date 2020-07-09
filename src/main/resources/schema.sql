@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS docdata(
     docNumber          VARCHAR(20),                         --COMMENT Номер документа
     docDate            VARCHAR(20),                         --COMMENT Дата выдачи
     UNIQUE(usID),
-    FOREIGN KEY (docID) REFERENCES docname (documentID)
+    FOREIGN KEY (docID) REFERENCES docname (documentID) 
 );
 
 
