@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS organization(
     id           INTEGER        NOT NULL  PRIMARY KEY  --COMMENT Уникальный ID организации
+    , version    INTEGER        NOT NULL               --COMMENT Служебное поле hibernate
     , name       VARCHAR(50)    NOT NULL               --COMMENT Название организации
     , fullName   VARCHAR(50)    NOT NULL               --COMMENT Полное название
     , address    VARCHAR(50)    NOT NULL               --COMMENT Адрес
@@ -14,6 +15,7 @@ CREATE UNIQUE INDEX oractive_idx ON organization (isActive);
 
 create table if not exists offices(
     orgId         INTEGER        NOT NULL              --COMMENT Уникальный ID организации
+    , version    INTEGER        NOT NULL               --COMMENT Служебное поле hibernate
     , id          INTEGER        NOT NULL  PRIMARY KEY --COMMENT Уникальный ID офиса
     , name        VARCHAR(50)    NOT NULL              --COMMENT Название офиса
     , address     VARCHAR(50)    NOT NULL              --COMMENT Адрес
@@ -28,6 +30,7 @@ CREATE INDEX ofactive_idx ON offices (isActive);
 
 CREATE TABLE IF NOT EXISTS users(
      id                 INTEGER        NOT NULL  PRIMARY KEY  --COMMENT Уникальный ID сотрудника
+    , version           INTEGER        NOT NULL               --COMMENT Служебное поле hibernate
     , orgId             INTEGER                               --СOMMENT ID  организации
     , officeId          INTEGER        NOT NULL               --СOMMENT ID офиса
     , firstName         VARCHAR(50)    NOT NULL               --COMMENT Имя
@@ -53,21 +56,12 @@ CREATE TABLE IF NOT EXISTS docname(
 
 
 CREATE TABLE IF NOT EXISTS docdata(
-<<<<<<< HEAD
     usID               INTEGER       NOT NULL PRIMARY KEY   -- COMMENT ID сотрудника
     , docID            INTEGER       NOT NULL               --COMMENT ID документа
     , docNumber        VARCHAR(20)                          --COMMENT Номер документа
     , docDate          VARCHAR(20)                          --COMMENT Дата выдачи
     , citizenshipID    INTEGER       NOT NULL               --COMMENT ID страны
     , UNIQUE(usID)
-=======
-    usID             INTEGER      NOT NULL PRIMARY KEY  -- COMMENT ID сотрудника
-    , docID          INTEGER      NOT NULL              --COMMENT ID документа
-    , docNumber      VARCHAR(20)                        --COMMENT Номер документа
-    , docDate        VARCHAR(20)                        --COMMENT Дата выдачи
-    , citizenshipID  INTEGER      NOT NULL              --COMMENT ID страны
-	, UNIQUE(usID)
->>>>>>> Собранные таблицы;индексы;внешн.ключи
     , FOREIGN KEY (usID) REFERENCES users (id)
     , FOREIGN KEY (docID) REFERENCES docname (documentID)
     , FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID)
@@ -79,8 +73,3 @@ CREATE TABLE IF NOT EXISTS citizenship(
 	, citizenshipName   VARCHAR(30)  NOT NULL                --COMMENT Гражданство
 	, citizenshipCode   INTEGER      NOT NULL                --COMMENT Код страны
 );
-<<<<<<< HEAD
-
-=======
->>>>>>> Собранные таблицы;индексы;внешн.ключи
-
