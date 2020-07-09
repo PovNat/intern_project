@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS users(
     phone             VARCHAR(30),                          --COMMENT Телефон
     citizenshipID     INTEGER       NOT NULL,               --COMMENT ID страны
     isIdentified      BOOLEAN       NOT NULL  default false,--COMMENT Атуальность
+    FOREIGN KEY (orgId) REFERENCES offices (orgId),
     FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID),
     FOREIGN KEY (id) REFERENCES docdata (usID)
 );
