@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS organization(
-    id           INTEGER        NOT NULL  PRIMARY KEY  --COMMENT Уникальный ID организации
-    , version    INTEGER        NOT NULL               --COMMENT Служебное поле hibernate
-    , name       VARCHAR(50)    NOT NULL               --COMMENT Название организации
-    , fullName   VARCHAR(50)    NOT NULL               --COMMENT Полное название
+    id           INTEGER        NOT NULL  PRIMARY KEY,  --COMMENT Уникальный ID организации
+    version      INTEGER        NOT NULL  ,             --COMMENT Служебное поле hibernate
+    name       VARCHAR(50)      NOT NULL  ,             --COMMENT Название организации
+    fullName   VARCHAR(50)    NOT NULL     ,          --COMMENT Полное название
     , address    VARCHAR(50)    NOT NULL               --COMMENT Адрес
     , phone      VARCHAR(30)    NOT NULL               --COMMENT Телефон
     , inn        VARCHAR(30)    NOT NULL               --COMMENT ИНН
     , kpp        VARCHAR(30)    NOT NULL               --COMMENT КПП
-    , isActive   BOOLEAN                               --COMMENT Актуальность
+    , isActive   BOOLEAN        NOT NULL default false --COMMENT Актуальность
 );
 
 CREATE UNIQUE INDEX orname_idx ON organization (name);
@@ -15,7 +15,7 @@ CREATE UNIQUE INDEX oractive_idx ON organization (isActive);
 
 create table if not exists offices(
     orgId         INTEGER        NOT NULL              --COMMENT Уникальный ID организации
-    , version    INTEGER        NOT NULL               --COMMENT Служебное поле hibernate
+    , version     INTEGER        NOT NULL               --COMMENT Служебное поле hibernate
     , id          INTEGER        NOT NULL  PRIMARY KEY --COMMENT Уникальный ID офиса
     , name        VARCHAR(50)    NOT NULL              --COMMENT Название офиса
     , address     VARCHAR(50)    NOT NULL              --COMMENT Адрес
@@ -38,8 +38,11 @@ CREATE TABLE IF NOT EXISTS users(
     , middleName        VARCHAR(50)                           --COMMENT Отчество
     , position          VARCHAR(30)    NOT NULL               --COMMENT Должность
     , phone             VARCHAR(30)                           --COMMENT Телефон
-    , isIdentified      BOOLEAN                               --COMMENT Атуальность
-);
+	, citizenshipID      INTEGER       NOT NULL               --COMMENT ID страны
+    , isIdentified      BOOLEAN        NOT NULL default false --COMMENT Атуальность
+	, FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID)
+	, FOREIGN KEY (id) REFERENCES docname (usID)
+	);
 
 CREATE INDEX usorgid_idx ON users (orgId);
 CREATE INDEX usofid_idx ON users (officeId);
@@ -60,11 +63,8 @@ CREATE TABLE IF NOT EXISTS docdata(
     , docID            INTEGER       NOT NULL               --COMMENT ID документа
     , docNumber        VARCHAR(20)                          --COMMENT Номер документа
     , docDate          VARCHAR(20)                          --COMMENT Дата выдачи
-    , citizenshipID    INTEGER       NOT NULL               --COMMENT ID страны
     , UNIQUE(usID)
-    , FOREIGN KEY (usID) REFERENCES users (id)
     , FOREIGN KEY (docID) REFERENCES docname (documentID)
-    , FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID)
 );
 
 
