@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS users(
     citizenshipID     INTEGER       NOT NULL,               --COMMENT ID страны
     isIdentified      BOOLEAN       NOT NULL  default false,--COMMENT Атуальность
     FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID),
-    FOREIGN KEY (id) REFERENCES docname (usID)
+    FOREIGN KEY (id) REFERENCES docdata (usID)
 );
 
 CREATE INDEX usorgid_idx ON users (orgId);
