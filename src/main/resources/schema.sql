@@ -53,6 +53,7 @@ CREATE INDEX usactive_idx ON users (isIdentified);
 
 CREATE TABLE IF NOT EXISTS docname(
     documentID       INTEGER       NOT NULL  PRIMARY KEY,  --COMMENT ID документа
+    version          INTEGER       NOT NULL,              --COMMENT Служебное поле hibernate
     documentName     VARCHAR(30)   NOT NULL,              --COMMENT Название документа
     documentCode     INTEGER       NOT NULL,              --COMMENT Код документа
     UNIQUE(documentID,documentName, documentCode)
@@ -60,7 +61,8 @@ CREATE TABLE IF NOT EXISTS docname(
 
 
 CREATE TABLE IF NOT EXISTS docdata(
-    usID               INTEGER       NOT NULL PRIMARY KEY,  -- COMMENT ID сотрудника
+    usID               INTEGER       NOT NULL PRIMARY KEY,  --COMMENT ID сотрудника
+    version            INTEGER       NOT NULL,              --COMMENT Служебное поле hibernate
     docID              INTEGER       NOT NULL,              --COMMENT ID документа
     docNumber          VARCHAR(20),                         --COMMENT Номер документа
     docDate            VARCHAR(20),                         --COMMENT Дата выдачи
@@ -71,6 +73,7 @@ CREATE TABLE IF NOT EXISTS docdata(
 
 CREATE TABLE IF NOT EXISTS citizenship(
 	citizenshipID     INTEGER      NOT NULL   PRIMARY KEY,  --COMMENT ID страны
+	version           INTEGER      NOT NULL,                --COMMENT Служебное поле hibernate
 	citizenshipName   VARCHAR(30)  NOT NULL,                --COMMENT Гражданство
-	citizenshipCode   INTEGER      NOT NULL,               --COMMENT Код страны
+	citizenshipCode   INTEGER      NOT NULL,                --COMMENT Код страны
 );
