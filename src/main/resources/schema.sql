@@ -67,7 +67,11 @@ CREATE TABLE IF NOT EXISTS docdata(
     docNumber          VARCHAR(20),                         --COMMENT Номер документа
     docDate            VARCHAR(20),                         --COMMENT Дата выдачи
     UNIQUE(usID),
+<<<<<<< HEAD
     FOREIGN KEY (docID) REFERENCES docname (documentID)
+=======
+    FOREIGN KEY (docID) REFERENCES docname (documentID) 
+>>>>>>> origin/master
 );
 
 
@@ -76,4 +80,8 @@ CREATE TABLE IF NOT EXISTS citizenship(
 	version           INTEGER      NOT NULL,                --COMMENT Служебное поле hibernate
 	citizenshipName   VARCHAR(30)  NOT NULL,                --COMMENT Гражданство
 	citizenshipCode   INTEGER      NOT NULL,                --COMMENT Код страны
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> origin/master
