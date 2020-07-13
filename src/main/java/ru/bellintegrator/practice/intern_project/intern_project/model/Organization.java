@@ -10,6 +10,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 
+/**
+ * Организации
+ */
 @Entity(name = "Organization")
 public class Organization {
     @Id
@@ -17,27 +20,51 @@ public class Organization {
     @Column(name = "id")
     private Integer id;
 
+    /**
+     * Служебное поле hibernate
+     */
     @Version
     private Integer version;
 
+    /**
+     * Название организации
+     */
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
+    /**
+     * Полное название организации
+     */
     @Column(name = "fullName", length = 50, nullable = false)
     private String fullName;
 
+    /**
+     * Адрес организации
+     */
     @Column(name = "address", length = 50, nullable = false)
     private String address;
 
+    /**
+     * номер телефона
+     */
     @Column(name = "phone", length = 30, nullable = false)
     private String phone;
 
+    /**
+     * ИНН
+     */
     @Column(name = "inn", length = 30, nullable = false)
     private String inn;
 
+    /**
+     * КПП
+     */
     @Column(name = "kpp", length = 30, nullable = false)
     private String kpp;
 
+    /**
+     * Актуальность
+     */
     @Column(name = "isActive", nullable = false)
     private boolean isActive;
 

@@ -10,6 +10,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 
+/**
+ * Названия документов
+ */
 @Entity(name = "Docname")
 public class Docname {
 
@@ -18,12 +21,21 @@ public class Docname {
     @Column(name = "documentID")
     private Integer documentID;
 
+    /**
+     * Служебное поле hibernate
+     */
     @Version
     private Integer version;
 
+    /**
+     * Название документа
+     */
     @Column(name = "documentName", length = 30, nullable = false)
     private String documentName;
 
+    /**
+     * Код документа
+     */
     @Column(name = "documentCode")
     private Integer documentCode;
 

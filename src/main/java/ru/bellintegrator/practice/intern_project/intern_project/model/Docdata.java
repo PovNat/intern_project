@@ -11,6 +11,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 
+/**
+ * Данные документов
+ */
 @Entity(name = "Docdata")
 public class Docdata {
 
@@ -19,15 +22,27 @@ public class Docdata {
     @Column(name = "usID")
     private Integer usID;
 
+    /**
+     * Служебное поле hibernate
+     */
     @Version
     private Integer version;
 
+    /**
+     * ID документа
+     */
     @Column(name = "docID",nullable = false)
     private Integer docID;
 
+    /**
+     * Номер документа
+     */
     @Column(name = "docNumber", length = 20)
     private String documentName;
 
+    /**
+     * Дата выдачи
+     */
     @Column(name = "docDate", length = 20)
     private String docDate;
 
