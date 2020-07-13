@@ -31,7 +31,6 @@ CREATE INDEX ofactive_idx ON offices (isActive);
 CREATE TABLE IF NOT EXISTS users(
     id                INTEGER       NOT NULL  PRIMARY KEY,  --COMMENT Уникальный ID сотрудника
     version           INTEGER       NOT NULL,               --COMMENT Служебное поле hibernate
-    orgId             INTEGER,                              --СOMMENT ID  организации
     officeId          INTEGER       NOT NULL,               --СOMMENT ID офиса
     firstName         VARCHAR(50)   NOT NULL,               --COMMENT Имя
     secondName        VARCHAR(50),                          --COMMENT Фамилия
@@ -40,7 +39,7 @@ CREATE TABLE IF NOT EXISTS users(
     phone             VARCHAR(30),                          --COMMENT Телефон
     citizenshipID     INTEGER       NOT NULL,               --COMMENT ID страны
     isIdentified      BOOLEAN       NOT NULL  default false,--COMMENT Атуальность
-    FOREIGN KEY (orgId) REFERENCES offices (orgId),
+    FOREIGN KEY (officeId) REFERENCES offices (id),
     FOREIGN KEY (citizenshipID) REFERENCES citizenship (citizenshipID),
     FOREIGN KEY (id) REFERENCES docdata (usID)
 );
@@ -68,7 +67,7 @@ CREATE TABLE IF NOT EXISTS docdata(
     docDate            VARCHAR(20),                         --COMMENT Дата выдачи
     UNIQUE(usID),
     FOREIGN KEY (docID) REFERENCES docname (documentID),
-    FOREIGN KEY (docID) REFERENCES docname (documentID)
+
 );
 
 
@@ -77,5 +76,4 @@ CREATE TABLE IF NOT EXISTS citizenship(
 	version           INTEGER      NOT NULL,                --COMMENT Служебное поле hibernate
 	citizenshipName   VARCHAR(30)  NOT NULL,                --COMMENT Гражданство
 	citizenshipCode   INTEGER      NOT NULL,                --COMMENT Код страны
-
 );
