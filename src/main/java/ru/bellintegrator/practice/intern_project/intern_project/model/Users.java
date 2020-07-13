@@ -12,6 +12,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 
+/**
+ * Сотрудники
+ */
 @Entity(name = "Users")
 public class Users {
     @Id
@@ -19,31 +22,57 @@ public class Users {
     @Column(name = "id")
     private Integer id;
 
+    /**
+     * Служебное поле hibernate
+     */
     @Version
     private Integer version;
 
-
+    /**
+     * ID офиса
+     */
     @Column(name = "officeId", nullable = false)
     private Integer officeId;
 
+    /**
+     * Имя сотрудника
+     */
     @Column(name = "firstName", length = 50, nullable = false)
     private String firstName;
 
+    /**
+     * Фамилия сотрудника
+     */
     @Column(name = "secondName", length = 50, nullable = false)
     private String secondName;
 
+    /**
+     * Отчество сотрудника
+     */
     @Column(name = "middleName", length = 50)
     private String middleName;
 
+    /**
+     * Должность
+     */
     @Column(name = "position", length = 30, nullable = false)
     private String position;
 
+    /**
+     * Номер телефона
+     */
     @Column(name = "phone", length = 30)
     private String phone;
 
+    /**
+     * Гражданство
+     */
     @Column(name = "citizenshipID", nullable = false)
     private Integer citizenshipID;
 
+    /**
+     * Актуальность
+     */
     @Column(name = "isIdentified", nullable = false)
     private boolean isIdentified;
 

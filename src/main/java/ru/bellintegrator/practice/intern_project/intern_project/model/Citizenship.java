@@ -1,6 +1,5 @@
 package ru.bellintegrator.practice.intern_project.intern_project.model;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +11,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 
+/**
+ * Гражданство
+ */
 @Entity(name = "Citizenship")
 public class Citizenship {
 
@@ -20,14 +22,24 @@ public class Citizenship {
     @Column(name = "citizenshipID")
     private Integer citizenshipID;
 
+    /**
+     * Служебное поле hibernate
+     */
     @Version
     private Integer version;
 
+    /**
+     * Название страны
+     */
     @Column(name = "citizenshipName", length = 20, nullable = false)
     private String citizenshipName;
 
+    /**
+     * Код страны
+     */
     @Column(name = "citizenshipCode", nullable = false)
     private Integer citizenshipCode;
+
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "book_id", nullable = false)
