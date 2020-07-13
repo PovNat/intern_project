@@ -1,6 +1,16 @@
 package ru.bellintegrator.practice.intern_project.intern_project.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Version;
+import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 
 @Entity(name = "Users")
 public class Users {
@@ -12,8 +22,6 @@ public class Users {
     @Version
     private Integer version;
 
-    @Column(name = "orgId")
-    private Integer orgId;
 
     @Column(name = "officeId", nullable = false)
     private Integer officeId;
@@ -44,7 +52,7 @@ public class Users {
     @JoinColumn(name = "org_ID")
     private Offices offices;
 
-    @OneToOne(mappedBy = "citizenship_ID", fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "citizenship_ID")
     private Citizenship citizenship;
 
     @OneToOne(mappedBy = "us_ID", fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
@@ -67,14 +75,6 @@ public class Users {
 
     public void setVersion(Integer version) {
         this.version = version;
-    }
-
-    public Integer getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(Integer orgId) {
-        this.orgId = orgId;
     }
 
     public Integer getOfficeId() {

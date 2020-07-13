@@ -1,6 +1,16 @@
 package ru.bellintegrator.practice.intern_project.intern_project.model;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Version;
+import javax.persistence.ManyToOne;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 
 @Entity(name = "Citizenship")
 public class Citizenship {
@@ -19,8 +29,8 @@ public class Citizenship {
     @Column(name = "citizenshipCode", nullable = false)
     private Integer citizenshipCode;
 
-    @OneToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name = "citizenship_ID")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "book_id", nullable = false)
     private Users users;
 
     public Citizenship(){
